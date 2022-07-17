@@ -1,0 +1,10 @@
+pystan
+
+fastapi
+uvicorn
+
+yfinance
+prophet
+
+pandas
+plotly
