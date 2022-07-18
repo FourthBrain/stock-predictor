@@ -7,6 +7,8 @@ import pandas as pd
 import yfinance as yf
 from prophet import Prophet
 
+import argparse
+
 
 BASE_DIR = Path(__file__).resolve(strict=True).parent
 TODAY = datetime.date.today()
@@ -20,7 +22,6 @@ def train(ticker='MSFT'):
     df_forecast["ds"] = df_forecast["Date"]
     df_forecast["y"] = df_forecast["Adj Close"]
     df_forecast = df_forecast[["ds", "y"]]
-    df_forecast
 
     model = Prophet()
     model.fit(df_forecast)
@@ -34,9 +35,7 @@ def predict(ticker="MSFT", days=7):
         return False
 
     model = joblib.load(model_file)
-
     future = TODAY + datetime.timedelta(days=days)
-
     dates = pd.date_range(start="2020-01-01", end=future.strftime("%m/%d/%Y"),)
     df = pd.DataFrame({"ds": dates})
 
@@ -56,9 +55,13 @@ def convert(prediction_list):
 
 
 if __name__ == "__main__":
-    ticker = "AAPL"
-    train(ticker)
-    prediction_list = predict(ticker=ticker, days=7)
+    parser = argparse.ArgumentParser(description='Predict')
+    parser.add_argument('--ticker', type=str, default='MSFT', help='Stock Ticker')
+    parser.add_argument('--days', type=int, default=7, help='Number of days to predict')
+    args = parser.parse_args()
+    
+    train(args.ticker)
+    prediction_list = predict(ticker=args.ticker, days=args.days)
     output = convert(prediction_list)
     print(output)
     
