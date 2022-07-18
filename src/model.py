@@ -15,7 +15,6 @@ TODAY = datetime.date.today()
 
 def train(ticker='MSFT'):
     data = yf.download(ticker, "2020-01-01", TODAY.strftime("%Y-%m-%d"))
-    data["Adj Close"].plot(title=f"{ticker} Stock Adjusted Closing Price")
 
     df_forecast = data.copy()
     df_forecast.reset_index(inplace=True)
