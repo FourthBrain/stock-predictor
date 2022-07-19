@@ -1,6 +1,6 @@
 # Stock Prophet
 
-A demo for stock prphet deployment and hosting with FastAPI and AWS EC2
+A demo for stock prophet deployment and hosting with FastAPI and AWS EC2
 
 ## Usage
 ```
