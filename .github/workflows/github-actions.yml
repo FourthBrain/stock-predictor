@@ -7,6 +7,6 @@ jobs:
     steps:
       - run: echo "the job was automatically triggered by ${{github.event_name}} event."
       - name: list files in the repo
-      - run: |
+        run: |
            ls -al ${{ github.workspace }}
       - run: echo "This job's status is ${{ job.status }}."
