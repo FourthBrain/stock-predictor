@@ -8,6 +8,8 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  schedule:
+    - cron: '15 * * * * *'
 
 permissions:
   contents: read
@@ -28,6 +30,12 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: update models every 15mins
+      run: |
+	bash update.sh
+	git add .
+	git commit -m 'update models every 15mins'
+	git push origin main
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
