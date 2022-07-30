@@ -30,9 +30,11 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - run:
+	chmod +x "${GITHUB_WORKSPACE}/.github/update.sh"
     - name: update models every 15mins
       run: |
-	bash update.sh
+	./update.sh
 	git add .
 	git commit -m 'update models every 15mins'
 	git push origin main
