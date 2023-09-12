@@ -1,4 +1,5 @@
 fastapi
+joblib
 numpy
 pandas
 yfinance
