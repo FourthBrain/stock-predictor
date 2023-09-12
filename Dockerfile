@@ -10,9 +10,6 @@ RUN apt-get -y update  && apt-get install -y \
 && rm -rf /var/lib/apt/lists/*
 
 RUN pip install --no-cache-dir -U pip
-RUN pip install --no-cache-dir -U cython
-RUN pip install --no-cache-dir -U numpy
-RUN pip install --no-cache-dir -U pystan
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir -U -r requirements.txt
