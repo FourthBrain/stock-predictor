@@ -42,9 +42,13 @@ You can access the interactive app [here](http://35.90.247.255:8000/docs#/defaul
     http://localhost:8000/predict
     ```
 2. docker. 
+docker run -d --rm --name mycontainer -p 8000:8000 stock-prophet
 ```
-docker build -t stock-nueralprophet .
-docker run -p 8000:8000 stock-nueralprophet  
+docker build -t stock-neuralprophet .
+docker run -p 8000:8000 stock-neuralprophet  # one can see the log
+docker run -d --rm --name mycontainer -p 8000:8000 stock-neuralprophet   # behind the scene
+
+
 curl localhost:8000/ping
 
 curl \
