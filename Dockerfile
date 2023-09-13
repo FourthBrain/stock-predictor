@@ -4,8 +4,6 @@ WORKDIR .
 
 RUN apt-get -y update  && apt-get install -y \
   python3-dev \
-  apt-utils \
-  python-dev-is-python3 \
   build-essential \
 && rm -rf /var/lib/apt/lists/*
 

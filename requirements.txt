@@ -3,8 +3,5 @@ joblib
 numpy
 pandas
 yfinance
-matplotlib
-kaleido
-ipywidgets
 neuralprophet
 uvicorn
