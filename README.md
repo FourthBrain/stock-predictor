@@ -15,8 +15,32 @@ You can access the interactive app [here](http://35.90.247.255:8000/docs#/defaul
 
 
 ## local
-1. uvicorn `/Users/flora/miniforge3/envs/stock-arima/bin/uvicorn  main:app --reload --workers 1 --host 0.0.0.0 --port 8000`
+1. conda env    
 
+    ```
+    conda create --name stocker-neuralprophet python=3.10
+    conda activate stocker-neuralprophet
+    pip install -r requirements.txt
+    ```
+1. uvicorn 
+    ```
+    cd app
+    uvicorn  main:app --workers 1 --host 0.0.0.0 --port 8000
+    ```
+    if not working: fnd the path of uvicorn and add it to the path
+    ```
+    conda env list 
+
+    /Users/flora/miniforge3/envs/stocker-neuralprophet/bin/uvicorn main:app --workers 1 --host 0.0.0.0 --port 8000
+
+    curl localhost:8000/ping
+    
+    curl \
+    --header "Content-Type: application/json" \
+    --request POST \
+    --data '{"ticker":"MSFT", "days":7}' \
+    http://localhost:8000/predict
+    ```
 2. docker. 
 ```
 docker build -t stock-nueralprophet .

@@ -10,7 +10,11 @@ from pathlib import Path
 
 
 BASE_DIR = Path(__file__).resolve(strict=True).parent
-TOMORROW = datetime.date.today() + datetime.timedelta(days=1)
+# check if now is the end of the day
+if datetime.datetime.now().hour >= 16:
+    TOMORROW = datetime.date.today() + datetime.timedelta(days=1)
+else:
+    TOMORROW = datetime.date.today()
 
 def get_model_path(ticker:str):
     #TODO: should we keep in tmp?
