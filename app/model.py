@@ -88,6 +88,7 @@ def predict(ticker="MSFT", days=7):
 
     return forecast.tail(days).to_dict("records")
 
+
 def convert(prediction_list) -> dict:
     """AI is creating summary for convert
 

@@ -57,3 +57,9 @@ curl \
 --data '{"ticker":"MSFT", "days":7}' \
 http://localhost:8000/predict
 ```
+
+
+3 streamlit ( local )
+```
+python3 streamlit run stock_ui.py
+```
