@@ -12,9 +12,9 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve(strict=True).parent
 # check if now is the end of the day
 if datetime.datetime.now().hour >= 16:
-    TOMORROW = datetime.date.today() + datetime.timedelta(days=1)
+    TODAY = datetime.date.today() + datetime.timedelta(days=1)
 else:
-    TOMORROW = datetime.date.today()
+    TODAY = datetime.date.today()
 
 def get_model_path(ticker:str):
     #TODO: should we keep in tmp?
@@ -29,7 +29,7 @@ def get_data(ticker:str):
     Returns:
         [type]: [description]
     """
-    data = yf.download(ticker, "2020-01-01", TOMORROW)
+    data = yf.download(ticker, "2020-01-01", TODAY)
     data.reset_index(inplace=True)
     data.rename(columns={"Date": "ds", "Adj Close": "y"}, inplace=True)
     data = data[["ds", "y"]]
@@ -76,7 +76,7 @@ def predict(ticker="MSFT", days=7):
 
     model = joblib.load(model_file)
 
-    future_date = pd.bdate_range(start=TOMORROW, periods=days)[-1]
+    future_date = pd.bdate_range(start=TODAY, periods=days)[-1]
     dates = pd.bdate_range(start='2021-01-01', end=future_date.strftime("%Y-%m-%d"))
 
     future = pd.DataFrame({"ds": dates, "y": None})
