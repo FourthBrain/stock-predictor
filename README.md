@@ -63,3 +63,4 @@ http://localhost:8000/predict
 ```
 python3 streamlit run stock_ui.py
 ```
+#TODO: is this the best structure? 
