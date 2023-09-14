@@ -101,7 +101,7 @@ def convert(prediction_list) -> dict:
     output = {}
     for data in prediction_list:
         date = data["ds"].strftime("%m/%d/%Y")
-        output[date] = data["trend"]
+        output[date] = round(data["trend"], 2)
     return output
 
 

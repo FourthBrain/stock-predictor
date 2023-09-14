@@ -3,6 +3,17 @@ import joblib
 from model import train, convert, get_model_path, TODAY
 import pandas as pd
 
+import yfinance as yf
+
+def get_company_name(ticker:str) -> str:
+    try:
+        ticker = ticker.upper()
+        stock = yf.Ticker(ticker)
+        return stock.info['longName']
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return None
+
 @st.cache_data
 def predict_ui(ticker="MSFT", days=7):
     """AI is creating summary for predict
@@ -25,11 +36,6 @@ def predict_ui(ticker="MSFT", days=7):
 
     future = pd.DataFrame({"ds": dates, "y": None})
     forecast = model.predict(future)
-
-    # TODO: plot should be allowed in streamlit app; currently it works in jupyter notebook
-    # model.plot(forecast)
-    # model.plot_components(forecast).savefig(f"{ticker}_plot_components.png")
-
     return forecast.tail(days).to_dict("records"), model, forecast
 
 def main():
@@ -42,13 +48,14 @@ def main():
         prediction_list, model, forecast = predict_ui(ticker, days)
         predictions = convert(prediction_list)
         
-        st.write(f'Forecast for {ticker} for the next {days} business days:')
-        st.write(predictions)
+        st.write(f'Forecast for {get_company_name(ticker)} ({ticker.upper()}) for the next {days} business days:')
+        st.dataframe(predictions)
         
         fig = model.plot(forecast)
-        # st.write(type(fig))
         st.plotly_chart(fig)
-        st.plotly_chart(model.plot_components(forecast))
+        with st.expander('View forecast components'):
+            st.plotly_chart(model.plot_components(forecast))
 
 if __name__ == "__main__":
+    st.set_page_config(page_title="Stock - NeuralProphet", page_icon="📈", layout="wide")
     main()
