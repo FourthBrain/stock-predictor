@@ -17,7 +17,6 @@ else:
     TODAY = datetime.date.today()
 
 def get_model_path(ticker:str):
-    #TODO: should we keep in tmp?
     return Path(BASE_DIR).joinpath(f"{ticker}.joblib")
 
 def get_data(ticker:str):
@@ -40,7 +39,7 @@ def save_model(model, ticker):
 
     Args:
         model ([type]): [description]
-        ticker ([type]): [description]
+        ticker (str): stock ticker
     """
     model.restore_trainer()  # avoid trainer being loaded into checkpoint 
     joblib.dump(model, get_model_path(ticker))
@@ -54,7 +53,7 @@ def train(ticker:str="MSFT"):
     # Get history stock data
     data = get_data(ticker=ticker)
     # Initiate model and fit the model
-    model = NeuralProphet()
+    model = NeuralProphet(epochs=3)
     model.fit(data, freq="D")
     # Save the model as a joblib object
     save_model(model, ticker)
@@ -82,24 +81,20 @@ def predict(ticker="MSFT", days=7):
     future = pd.DataFrame({"ds": dates, "y": None})
     forecast = model.predict(future)
 
-    # TODO: plot should be allowed in streamlit app; currently it works in jupyter notebook
-    # model.plot(forecast)
-    # model.plot_components(forecast).savefig(f"{ticker}_plot_components.png")
-
     return forecast.tail(days).to_dict("records")
 
 
-def convert(prediction_list) -> dict:
+def convert(predictions) -> dict:
     """AI is creating summary for convert
 
     Args:
-        prediction_list ([type]): [description]
+        predictions ([type]): [description]
         
     Returns:
         dict: [description]
     """
     output = {}
-    for data in prediction_list:
+    for data in predictions:
         date = data["ds"].strftime("%m/%d/%Y")
         output[date] = round(data["trend"], 2)
     return output

@@ -20,7 +20,6 @@ async def pong():
 
 @app.post("/predict", response_model=StockOut, status_code=200)
 def get_prediction(payload: StockIn):
-    # import pdb ; pdb.set_trace()
     ticker = payload.ticker
     days = payload.days
 
