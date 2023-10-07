@@ -1,7 +1,9 @@
-fastapi
 joblib
+streamlit==1.27.0
 numpy
 pandas
 yfinance
 neuralprophet
-uvicorn
+matplotlib
+kaleido
+ipywidgets

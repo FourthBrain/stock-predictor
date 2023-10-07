@@ -8,6 +8,8 @@ from neuralprophet import NeuralProphet
 import argparse
 from pathlib import Path
 
+import streamlit as st # add cache
+
 
 BASE_DIR = Path(__file__).resolve(strict=True).parent
 # check if now is the end of the day
@@ -58,6 +60,31 @@ def train(ticker:str="MSFT"):
     # Save the model as a joblib object
     save_model(model, ticker)
 
+@st.cache_resource
+def get_model(ticker:str="MSFT"):
+    """AI is creating summary for get_model
+
+    Args:
+        ticker (str, optional): [description]. Defaults to "MSFT".
+
+    Returns:
+        [type]: [description]
+    """
+    model_file = get_model_path(ticker)
+    if not model_file.exists():
+        train(ticker=ticker)
+
+    model = joblib.load(model_file)
+    return model
+
+
+def get_future_df(days:int) -> pd.DataFrame:
+    future_date = pd.bdate_range(start=TODAY, periods=days)[-1]
+    dates = pd.bdate_range(start='2021-01-01', end=future_date.strftime("%Y-%m-%d"))
+
+    future = pd.DataFrame({"ds": dates, "y": None})
+    return future
+
 
 def predict(ticker="MSFT", days=7):
     """AI is creating summary for predict
@@ -69,16 +96,13 @@ def predict(ticker="MSFT", days=7):
     Returns:
         [type]: [description]
     """
-    model_file = get_model_path(ticker)
-    if not model_file.exists():
-        train(ticker=ticker)
-
-    model = joblib.load(model_file)
-
-    future_date = pd.bdate_range(start=TODAY, periods=days)[-1]
-    dates = pd.bdate_range(start='2021-01-01', end=future_date.strftime("%Y-%m-%d"))
-
-    future = pd.DataFrame({"ds": dates, "y": None})
+    try:
+        model = get_model(ticker)
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return None
+    
+    future = get_future_df(days)
     forecast = model.predict(future)
 
     return forecast.tail(days).to_dict("records")
