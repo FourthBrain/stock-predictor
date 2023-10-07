@@ -1,6 +1,6 @@
 # Stock Predictor UI
 
-A demo for stock prophet streamlit app
+A demo for stock prophet streamlit app, [link](https://first-stock.streamlit.app)
 
 ## Demo
 - showcase add gadget
@@ -11,7 +11,7 @@ A demo for stock prophet streamlit app
 python3 -m streamlit run stock_ui.py
 ```
 
-## local
+## local setup
 1. conda env    
 
     ```
