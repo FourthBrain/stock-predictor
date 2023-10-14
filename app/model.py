@@ -8,6 +8,9 @@ from neuralprophet import NeuralProphet
 import argparse
 from pathlib import Path
 
+import streamlit as st # add cache
+
+
 BASE_DIR = Path(__file__).resolve(strict=True).parent
 # check if now is the end of the day
 if datetime.datetime.now().hour >= 16:
@@ -57,6 +60,7 @@ def train(ticker:str="MSFT"):
     # Save the model as a joblib object
     save_model(model, ticker)
 
+@st.cache_resource
 def get_model(ticker:str="MSFT"):
     """AI is creating summary for get_model
 

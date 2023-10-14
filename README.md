@@ -1,16 +1,22 @@
-# Stock Prophet
+# Stock Predictor UI
 
-Predicting stock prices using neural prophet. 
+A demo for stock prophet streamlit app, [link](https://first-stock.streamlit.app)
+
+## Demo
+- showcase add gadget
+- cache 
+- one click deploy
 ## Usage
 make local prediction
 ```
-conda activate stocker-neuralprophet
-python3 app/model.py --ticker MSFT --days 7
+python3 -m streamlit run stock_ui.py
 ```
 
-## local: conda env    
-```
-conda create --name stocker-neuralprophet python=3.10
-conda activate stocker-neuralprophet
-pip install -r requirements.txt
-```
+## local setup
+1. conda env    
+
+    ```
+    conda create --name stocker-neuralprophet-ui python=3.10 -y
+    conda activate stocker-neuralprophet-ui
+    pip install -r requirements.txt
+    ```

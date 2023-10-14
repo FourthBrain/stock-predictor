@@ -1,5 +1,0 @@
-jupyterlab
-streamlit
-matplotlib
-kaleido
-ipywidgets
