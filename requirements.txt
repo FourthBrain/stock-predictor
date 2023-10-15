@@ -1,7 +1,5 @@
-fastapi
 joblib
 numpy
 pandas
 yfinance
 neuralprophet
-uvicorn
