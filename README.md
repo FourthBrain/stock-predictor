@@ -1,13 +1,14 @@
 # Stock Predictor UI
 
-A demo for stock prophet streamlit app, [link](https://first-stock.streamlit.app)
+A demo for stock predictor app, [link](https://fbai-stock-predictor.streamlit.app)
 
 ## Demo
 - showcase add gadget
 - cache 
 - one click deploy
+
 ## Usage
-make local prediction
+launch the app
 ```
 python3 -m streamlit run stock_ui.py
 ```
@@ -16,7 +17,7 @@ python3 -m streamlit run stock_ui.py
 1. conda env    
 
     ```
-    conda create --name stocker-neuralprophet-ui python=3.10 -y
-    conda activate stocker-neuralprophet-ui
+    conda create --name stocker-predictor-ui python=3.10 -y
+    conda activate stocker-predictor-ui
     pip install -r requirements.txt
     ```
