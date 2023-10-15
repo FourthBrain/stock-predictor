@@ -126,7 +126,7 @@ if __name__ == "__main__":
     parser.add_argument('--days', type=int, default=7, help='Number of days to predict')
     args = parser.parse_args()
     
-    prediction_list = predict(ticker=args.ticker.upper(), days=args.days)
-    output = convert(prediction_list)
+    predictions = predict(ticker=args.ticker.upper(), days=args.days)
+    output = convert(predictions)
     print(output)
     
