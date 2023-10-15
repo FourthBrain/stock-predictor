@@ -104,14 +104,14 @@ def predict(ticker="MSFT", days=7):
     return forecast.tail(days).to_dict("records")
 
 
-def convert(predictions) -> dict:
-    """AI is creating summary for convert
+def convert(predictions:dict) -> dict:
+    """convert and process raw predictions to a dict of date & predicted stock price
 
     Args:
-        predictions ([type]): [description]
+        predictions (dict): neuralprophet predictions
         
     Returns:
-        dict: [description]
+        dict: a dict of date & predicted stock price
     """
     output = {}
     for data in predictions:
