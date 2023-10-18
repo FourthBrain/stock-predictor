@@ -4,7 +4,7 @@ from pydantic import BaseModel
 
 from model import predict, convert
 
-app = FastAPI()
+app = FastAPI(title='Stock Prediction API', version='0.1', docs_url='/')
 
 @app.get("/ping")
 async def pong():
