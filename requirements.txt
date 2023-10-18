@@ -3,3 +3,5 @@ numpy
 pandas
 yfinance
 neuralprophet
+fastapi
+uvicorn

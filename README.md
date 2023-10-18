@@ -1,16 +1,18 @@
 # Stock Predictor
 
-Predicting stock prices using neural prophet. 
+wrap the ML model into an API via fastapi 
+
 ## Usage
-make local prediction
+
 ```
-conda activate stock-predictor
-python3 app/model.py --ticker MSFT --days 7
+conda activate sp-fastapi
+
+
 ```
 
 ## local: conda env    
 ```
-conda create --name stock-predictor python=3.10 -y
-conda activate stock-predictor
+conda create --name sp-fastapi python=3.10 -y
+conda activate sp-fastapi
 pip install -r requirements.txt
 ```
