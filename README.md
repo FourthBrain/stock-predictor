@@ -12,6 +12,10 @@ launch the app
 ```
 python3 -m streamlit run stock_ui.py
 ```
+or 
+```
+streamlit run stock_ui.py
+```
 
 ## local setup
 1. conda env    
