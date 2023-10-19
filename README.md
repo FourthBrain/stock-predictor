@@ -19,15 +19,6 @@ http://localhost:8000/predict
 
 
 ## local setup
-1.  conda env    
-    ```
-    conda create --name sp-fastapi python=3.10 -y
-    conda activate sp-fastapi
-    pip install -r requirements.txt
-    ```
-
-1. uvicorn 
-    ```
-    cd app
-    uvicorn  main:app --reload --host 0.0.0.0 --port 8000
-    ```
+```
+docker build -t stock-predictor .
+```
