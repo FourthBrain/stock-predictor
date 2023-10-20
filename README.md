@@ -1,12 +1,10 @@
 # Stock Predictor
 
-wrap the ML model into an API via fastapi 
+dockerize a fastapi app that predicts stock prices
 
 ## Usage
 
 ```
-conda activate sp-fastapi
-
 curl localhost:8000/ping
     
 curl \
