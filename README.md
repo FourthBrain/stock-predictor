@@ -1,23 +1,30 @@
+---
+title: Hf Stock Predictor
+emoji: 🏃
+colorFrom: pink
+colorTo: blue
+sdk: docker
+pinned: false
+---
+
+Check out the configuration reference at https://huggingface.co/docs/hub/spaces-config-reference
+
 # Stock Predictor
 
-dockerize a fastapi app that predicts stock prices
+a dockerzied app deployed at https://coorbital-hf-stock-predictor.hf.space/
 
 ## Usage
 
 ```
-curl localhost:8000/ping
-    
+curl https://coorbital-hf-stock-predictor.hf.space/ping
+
 curl \
 --header "Content-Type: application/json" \
 --request POST \
 --data '{"ticker":"MSFT", "days":7}' \
-http://localhost:8000/predict
+https://coorbital-hf-stock-predictor.hf.space/predict
 ```
 
-
-
-## local setup
-```
-docker build -t stock-predictor .
-docker run -d --rm --name mycontainer -p 8000:8000 stock-predictor
-```
+## Notes
+- replace `https://huggingface.co/` with `git@hf.co:` when clone the repo
+    - check their doc on [SSH](https://huggingface.co/docs/hub/security-git-ssh)

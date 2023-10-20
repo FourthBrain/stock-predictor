@@ -7,6 +7,7 @@ RUN apt-get -y update  && apt-get install -y \
 
 # Set the working directory to the user's home directory
 WORKDIR /app
+RUN chmod -R a+w .
 
 RUN pip install --no-cache-dir -U pip
 
@@ -15,4 +16,4 @@ RUN pip install --no-cache-dir -U -r requirements.txt
 
 COPY ./app /app
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000" ]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "7860" ]
