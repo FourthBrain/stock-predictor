@@ -21,5 +21,5 @@ http://localhost:8000/predict
 ## local setup
 ```
 docker build -t stock-predictor .
-ocker run -d --rm --name mycontainer -p 8000:8000 stock-predictor
+docker run -d --rm --name mycontainer -p 8000:8000 stock-predictor
 ```
