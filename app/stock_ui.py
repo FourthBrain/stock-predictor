@@ -18,10 +18,10 @@ def main():
     st.title('Stock Predictor')
     
     ticker = st.text_input('Enter Stock Ticker', 'MSFT')
-    # # check if ticker is valid
-    # if get_company_name(ticker) is None:
-    #     st.error('Invalid ticker. Please enter a valid ticker.')
-    #     return
+    # check if ticker is valid
+    if get_company_name(ticker) is None:
+        st.error('Invalid ticker. Please enter a valid ticker.')
+        return
     days = st.number_input('Enter number of business days for prediction', min_value=1, value=7, step=1)
     
     if st.button('Predict'):
