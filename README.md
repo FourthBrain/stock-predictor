@@ -1,6 +1,7 @@
 # Stock Predictor
+### For use if the "docker" branch is failing to build
 
-dockerize a fastapi app that predicts stock prices
+alternative branch to dockerize a fastapi app that predicts stock prices
 
 ## Usage
 

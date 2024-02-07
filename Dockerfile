@@ -10,8 +10,14 @@ WORKDIR /app
 
 RUN pip install --no-cache-dir -U pip
 
-COPY requirements.txt .
-RUN pip install --no-cache-dir -U -r requirements.txt
+COPY requirements-core.txt .
+COPY requirements-ml.txt .
+
+# Install core dependencies with a retry mechanism
+RUN for i in {1..3}; do pip install --no-cache-dir --default-timeout=600 -r requirements-core.txt && break || sleep 5; done
+
+# Install ML libraries with a retry mechanism
+RUN for i in {1..3}; do pip install --no-cache-dir --default-timeout=600 -r requirements-ml.txt && break || sleep 5; done
 
 COPY ./app /app
 

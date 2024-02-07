@@ -2,6 +2,5 @@ joblib
 numpy
 pandas
 yfinance
-neuralprophet
-fastapi
-uvicorn
+neuralprophet==0.6.0
+
