@@ -1,16 +1,24 @@
 # Stock Predictor
+### For use if the "docker" branch is failing to build
 
-Predicting stock prices using neural prophet. 
+alternative branch to dockerize a fastapi app that predicts stock prices
+
 ## Usage
-make local prediction
+
 ```
-conda activate stock-predictor
-python3 app/model.py --ticker MSFT --days 7
+curl localhost:8000/ping
+    
+curl \
+--header "Content-Type: application/json" \
+--request POST \
+--data '{"ticker":"MSFT", "days":7}' \
+http://localhost:8000/predict
 ```
 
-## local: conda env    
+
+
+## local setup
 ```
-conda create --name stock-predictor python=3.10 -y
-conda activate stock-predictor
-pip install -r requirements.txt
+docker build -t stock-predictor .
+docker run -d --rm --name mycontainer -p 8000:8000 stock-predictor
 ```

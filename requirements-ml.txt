@@ -2,4 +2,5 @@ joblib
 numpy
 pandas
 yfinance
-neuralprophet
+neuralprophet==0.6.0
+
